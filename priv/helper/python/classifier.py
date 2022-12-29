@@ -17,7 +17,6 @@ iris_data.loc[(iris_data['class'] == 'Iris-versicolor') &
 (iris_data['sepal_length_cm'] < 1.0),
 'sepal_length_cm'] *= 100.0
 
-
 iris_data.hist(bins=50, figsize=(20,15))
 
 attributes = ["sepal_length_cm", "sepal_width_cm", "petal_length_cm",
@@ -88,6 +87,7 @@ def predict_model(args):
     iris_params.ParseFromString(args)
     model_params = np.array([[iris_params.sepal_length, iris_params.sepal_width, iris_params.petal_length, iris_params.petal_width]])
     result = forest_classifier.predict(model_params)
-    return result
-
-    
+    mystring = ''
+    for x in result:
+       mystring += ' '+x
+    return mystring

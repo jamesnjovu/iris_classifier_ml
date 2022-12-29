@@ -11,16 +11,16 @@ defmodule IrisClassiferMlWeb.FormComponent do
     phx-value-key="info"><%= live_flash(@flash, :info) %></p>
         <form phx-submit="save" phx-target={@myself}>
           <label>Sepal Length (cm)</label>
-          <input type="number" value="5.1" step="any" name="sepal_length" required/>
+          <input type="number" step="any" name="sepal_length" required/>
 
           <label>Sepal Width (cm)</label>
-          <input type="number" value="3.6" step="any" name="sepal_width" required/>
+          <input type="number" step="any" name="sepal_width" required/>
 
           <label>Petal Length (cm)</label>
-          <input type="number" value="1.3" step="any" name="petal_length" required/>
+          <input type="number" step="any" name="petal_length" required/>
 
           <label>Petal Width (cm)</label>
-          <input type="number" value="0.4" step="any" name="petal_width" required/>
+          <input type="number" step="any" name="petal_width" required/>
 
           <div>
             <%= submit "Predict" %>
@@ -63,7 +63,7 @@ defmodule IrisClassiferMlWeb.FormComponent do
 
       class = ML.predict([Iris.encode(iris_params)])
 
-      {:noreply, put_flash(socket, :info, "Predicted class: " <> class)}
+      {:noreply, put_flash(socket, :info, "Predicted class: " <> to_string(class))}
     else
       _error ->
         {:noreply, put_flash(socket, :error, "Invalid parameters!")}
